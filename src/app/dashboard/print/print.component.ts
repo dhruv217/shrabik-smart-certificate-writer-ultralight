@@ -94,36 +94,48 @@ export class PrintComponent implements OnInit, AfterViewInit, OnDestroy {
     const reader = this.readers[0];
     console.log('data', studentData);
     console.log(reader.name);
+    const dataBuffer: any = Buffer.allocUnsafe(16);
+    let studentKey: any;
     // subscribe to changes
     this.serialNumber$.next(studentData.serialNumber);
     this.students$.subscribe(studentObject => {
       console.log(studentObject);
       if (this.card !== undefined) {
         try {
-          const dataBuffer = Buffer.allocUnsafe(16);
+          const key = 'D3B09FD9';
+          const keyType = KEY_TYPE_B; // KEY_TYPE_A
           dataBuffer.fill(0);
           dataBuffer.write(studentData.serialNumber);
-          console.log(dataBuffer);
-          console.log(this.card);
-          (async () => {
-            await reader.write(4, dataBuffer); // await reader.write(4, data, 16); for Mifare Classic cards
-            console.log(`data written`, { reader: reader.name });
-            this.card = undefined;
-            let snackBarRefence = this.snackBar.open('Certificate successfully printed, Please remove.');
-          })();
-          (async () => {
-            await this.studentsRef.update(studentObject[0].key, {
-              printed: true,
-            });
-          })();
-          console.log('data changed');
+          studentKey = studentObject[0].key;
         } catch (err) {
           console.error(`error when writing data`, { reader: reader.name, err });
         }
       } else {
-        let snackBarRef = this.snackBar.open('No Card Inserted');
+        if (studentObject[0].key !== studentKey) {
+          const snackBarRef = this.snackBar.open('No Card Inserted');
+        }
       }
     });
+    Promise.all([
+      // reader.authenticate(4, keyType, key),
+      reader.write(4, dataBuffer, 16),
+      // you add more authenticate call if you want auth more blocks
+    ])
+      .then(() => {
+        this.card = undefined;
+        const snackBarRefence = this.snackBar.open('Certificate successfully printed, Please remove.');
+        console.log('write promise resolved');
+      })
+      .then(() => {
+      this.studentsRef.update(studentKey, {
+        printed: true,
+      });
+      console.log('data changed');
+      })
+      .catch(err => {
+        console.log(`error`, err);
+      });
+
   }
 
 
