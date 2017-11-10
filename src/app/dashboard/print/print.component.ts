@@ -107,6 +107,25 @@ export class PrintComponent implements OnInit, AfterViewInit, OnDestroy {
           dataBuffer.fill(0);
           dataBuffer.write(studentData.serialNumber);
           studentKey = studentObject[0].key;
+          Promise.all([
+            // reader.authenticate(4, keyType, key),
+            reader.write(4, dataBuffer, 16),
+            // you add more authenticate call if you want auth more blocks
+          ])
+            .then(() => {
+              this.card = undefined;
+              const snackBarRefence = this.snackBar.open('Certificate successfully printed, Please remove.');
+              console.log('write promise resolved');
+            })
+            .then(() => {
+            this.studentsRef.update(studentKey, {
+              printed: true,
+            });
+            console.log('data changed');
+            })
+            .catch(err => {
+              console.log(`error`, err);
+            });
         } catch (err) {
           console.error(`error when writing data`, { reader: reader.name, err });
         }
@@ -116,25 +135,6 @@ export class PrintComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     });
-    Promise.all([
-      // reader.authenticate(4, keyType, key),
-      reader.write(4, dataBuffer, 16),
-      // you add more authenticate call if you want auth more blocks
-    ])
-      .then(() => {
-        this.card = undefined;
-        const snackBarRefence = this.snackBar.open('Certificate successfully printed, Please remove.');
-        console.log('write promise resolved');
-      })
-      .then(() => {
-      this.studentsRef.update(studentKey, {
-        printed: true,
-      });
-      console.log('data changed');
-      })
-      .catch(err => {
-        console.log(`error`, err);
-      });
 
   }
 
