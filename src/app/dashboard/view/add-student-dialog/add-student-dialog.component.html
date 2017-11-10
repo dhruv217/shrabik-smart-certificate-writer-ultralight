@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Add Student</h2>
+<mat-dialog-content>
+    <div class="dialog-container">
+        <mat-form-field>
+            <input matInput placeholder="Serial Number" [(ngModel)]="data.serialNo">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Name" [(ngModel)]="data.name">
+        </mat-form-field>
+        <div>
+            <ng-container>
+                <label>Certificate PDF :</label>
+                <button mat-button class="upload-button-margin" (click)="certPdfInput.click()">
+                    <mat-icon color="primary">cloud-upload</mat-icon>
+                    <span>  Upload</span>
+                    <input #certPdfInput type="file" (change)="onFileInput($event)" style="display:none;" />
+                </button>
+            </ng-container>
+            <ng-container *ngIf="uploadProgressValue != -1">
+                <mat-progress-bar mode="determinate" [ngClass]="upload-progress-margin" [value]="uploadProgressValue">
+                </mat-progress-bar>
+            </ng-container>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button fxFlex="1 1 auto" [mat-dialog-close]="data" [disabled]="primaryActionDisabled$ | async">Add</button>
+    <button mat-button fxFlex="1 1 auto" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,51 @@
+<mat-grid-list cols="3">
+    <mat-grid-tile></mat-grid-tile>
+    <!-- Writing markup for signup starts -->
+    <mat-grid-tile class='signup-element'>
+        <mat-card class="signup-container">
+            <!-- Template Header starts -->
+            <div class="signup-box-header">
+                <!-- <img src="http://www.shrabik-solutions.com/wp-content/uploads/2016/07/cropped-1.png"> -->
+                <span style="align-self: center;">Signup</span>
+            </div>
+            <!-- Template Header ends -->
+
+            <!-- Template Body starts -->
+            <div class="signup-box-body">
+                <form #formatata='ngForm' (ngSubmit)="onSubmit(formatata)">
+                    <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+                    <!-- Markup for getting Username starts -->
+                    <mat-grid-list cols="9" rowHeight="75px">
+                        <mat-grid-tile [rowspan]="1" class="signup-icon">
+                            <mat-icon>lock</mat-icon>
+                        </mat-grid-tile>
+                        <mat-grid-tile [colspan]="7">
+                            <mat-input-container class="justifier">
+                                <input matInput type="text" placeholder="Email address.." [(ngModel)]="email" name="email" required>
+                            </mat-input-container>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <!-- Markup for getting Username ends -->
+                    <!-- Markup for getting Password starts -->
+                    <mat-grid-list cols="9" rowHeight="100px">
+                        <mat-grid-tile [rowspan]="1" class="signup-icon">
+                            <mat-icon>remove_red_eye</mat-icon>
+                        </mat-grid-tile>
+                        <mat-grid-tile [colspan]="7">
+                            <mat-input-container class="justifier">
+                                <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+                            </mat-input-container>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <!-- Markup for getting Password ends -->
+                    <button mat-raised-button class="signup-button" type="submit" [disabled]="!formatata.valid"> 
+                <mat-icon>input</mat-icon> Create My Account
+              </button>
+                </form>
+            </div>
+            <!-- Template Body ends -->
+        </mat-card>
+    </mat-grid-tile>
+    <!-- Writing markup for signup ends -->
+    <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>

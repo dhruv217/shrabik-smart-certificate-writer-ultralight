@@ -1,0 +1,72 @@
+<div class="content-margin">
+    <div fxLayout="row" fxLayoutGap="8px">
+        <span style="font-size: 1.5em" fxFlexOrder="0" fxFlexAlign="start end">Print Student Certificates...</span>
+        <span class="fill-remaining-space"></span>
+        <button mat-raised-button color="primary" fxFlexOrder="2" fxFlexAlign="end">
+            <mat-icon>add</mat-icon>
+            <a>Print All</a>
+        </button>
+    </div>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="side" position="end" opened="true">
+            <div>
+                <mat-toolbar color="primary" class="mat-elevation-z2">
+                    <span>Reader Certificate</span>
+                </mat-toolbar>
+                <mat-list>
+                    <mat-list-item>
+                        <span>Reader Status :</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span>Reader Name :</span>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </mat-sidenav>
+        <div style="margin-top: 16px; margin-right: 8px;" fxLayout="column">
+            <div *ngIf="contentLoading" fxLayout="row" fxLayoutAlign="center">
+                <div class="spinner-container">
+                    <mat-spinner diameter="48" strokeWidth="4"></mat-spinner>
+                </div>
+            </div>
+            <mat-card class="mb20">
+                <mat-card-content>
+                    <mat-table #table [dataSource]="dataSource" matSort>
+
+                        <!--- Note that these columns can be defined in any order.
+                            The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- Serial Number Column -->
+                        <ng-container matColumnDef="serialNumber">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Serial Number</mat-header-cell>
+                            <mat-cell *matCellDef="let student"> {{student.serialNumber}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let student"> {{student.name}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Status Updated -->
+                        <ng-container matColumnDef="print">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Certificate Status</mat-header-cell>
+                            <mat-cell *matCellDef="let student">
+                                <div>
+                                    <div *ngIf="student.printed; else notPrinted">
+                                        <button mat-raised-button disabled>Printed</button>
+                                    </div>
+                                    <ng-template #notPrinted color="green">
+                                        <button mat-raised-button (click)="writeDataToCard(student)">Print</button>
+                                    </ng-template>
+                                </div>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,27 @@
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.highlight {
+    background: #d8d8d8;
+}
+
+mat-sidenav-content {
+    height: 100vh;
+}
+
+mat-sidenav {
+    display: flex;
+    height: 78vh;
+    width: 350px;
+    margin: 16px 0px 0px 8px;
+    overflow: hidden;
+}
+
+mat-sidenav>mat-toolbar {
+    height: 40px;
+}
+
+mat-sidenav-container {
+    height: 100% auto;
+}

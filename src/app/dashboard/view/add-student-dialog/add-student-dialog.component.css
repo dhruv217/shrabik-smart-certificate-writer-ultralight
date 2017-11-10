@@ -1,0 +1,16 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-container>* {
+    width: 100%;
+}
+
+.upload-progress.margin {
+    margin: 0px 4px 0px 2px;
+}
+
+.upload-progress.margin {
+    margin: 4px 0px 0px 0px;
+}

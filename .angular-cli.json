@@ -6,10 +6,20 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "bundle",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        {
+          "glob": "**/*",
+          "input": "./electron/",
+          "output": "./"
+        },
+        {
+          "glob": "**/*",
+          "input": "./electron/",
+          "output": "./"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",

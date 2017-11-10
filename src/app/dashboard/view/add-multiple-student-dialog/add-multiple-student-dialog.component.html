@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Add Multiple Students</h2>
+<mat-dialog-content>
+    <div class="dialog-container">
+        <div>
+            <ng-container>
+                <label>Student Info Xlsx Sheet :</label>
+                <button mat-button class="upload-button-margin" (click)="studentInfoXlsxInput.click()">
+                    <mat-icon color="primary">cloud-upload</mat-icon>
+                    <span>  Upload</span>
+                    <input #studentInfoXlsxInput type="file" (change)="onXlsxInput($event)" style="display:none;" />
+                </button>
+            </ng-container>
+            <ng-container *ngIf="uploadXlsxProgressValue != -1">
+                <mat-progress-bar mode="determinate" [ngClass]="upload-progress-margin" [value]="uploadXlsxProgressValue">
+                </mat-progress-bar>
+            </ng-container>
+        </div>
+        <div>
+            <ng-container>
+                <label>Certificate PDF :</label>
+                <button mat-button class="upload-button-margin" (click)="certPdfInput.click()">
+                    <mat-icon color="primary">cloud-upload</mat-icon>
+                    <span>  Upload</span>
+                    <input #certPdfInput type="file" (change)="onPdfInput($event)" style="display:none;" />
+                </button>
+            </ng-container>
+            <ng-container *ngIf="uploadPdfProgressValue != -1">
+                <mat-progress-bar mode="determinate" [ngClass]="upload-progress-margin" [value]="uploadPdfProgressValue">
+                </mat-progress-bar>
+            </ng-container>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button fxFlex="1 1 auto" [mat-dialog-close]="data" [disabled]="primaryActionDisabled$ | async">Add</button>
+    <button mat-button fxFlex="1 1 auto" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

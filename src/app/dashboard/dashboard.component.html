@@ -1,0 +1,18 @@
+<div>
+    <mat-toolbar color="primary" class="mat-elevation-z4">
+        <span>University Name</span>
+        <span class="fill-remaining-space"></span>
+        <span>
+        <button mat-button (click)="logout()">Logout</button>
+    </span>
+    </mat-toolbar>
+    <mat-tab-group mat-dynamic-height mat-border-bottom class="nav-tab-view">
+        <mat-tab label="View">
+            <app-view></app-view>
+        </mat-tab>
+        <mat-tab label="Print">
+            <app-print></app-print>
+        </mat-tab>
+    </mat-tab-group>
+    <!--<app-view></app-view>-->
+</div>
