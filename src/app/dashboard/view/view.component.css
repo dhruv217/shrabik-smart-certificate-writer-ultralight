@@ -6,22 +6,68 @@
     background: #d8d8d8;
 }
 
-mat-sidenav-content {
-    height: 100vh;
-}
-
-mat-sidenav {
+.student-content {
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    height: 78vh;
-    width: 350px;
-    margin: 16px 0px 0px 8px;
-    overflow: hidden;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
 }
 
-mat-sidenav>mat-toolbar {
+.view-table {
+    margin-top: 16px;
+    margin-right: 8px;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 2 1 auto;
+    -ms-flex: 2 1 auto;
+    flex: 2 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.view-pdf {
+    margin-top: 16px;
+    margin-left: 8px;
+    width: 100%;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+mat-card>mat-toolbar {
     height: 40px;
-}
-
-mat-sidenav-container {
-    height: 100% auto;
 }

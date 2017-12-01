@@ -3,7 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSort, MatSidenav } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSort } from '@angular/material';
 import { AddStudentDialogComponent } from './add-student-dialog/add-student-dialog.component';
 import { AddMultipleStudentDialogComponent } from './add-multiple-student-dialog/add-multiple-student-dialog.component';
 import { Student } from '../../shared/student';
@@ -23,12 +23,12 @@ export class ViewComponent implements OnDestroy, OnInit {
   contentLoading: boolean;
   subs: Subscription[] = [];
   displayedColumns = ['serialNumber', 'name', 'status'];
-  selectedRowIndex: number = -1;
+  selectedRowIndex = -1;
   selectedCertificatePath: string;
   selectedPageInPdf: number;
 
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
+
 
   constructor(db: AngularFireDatabase, public dialog: MatDialog, public dataSource: StudentsDataSource, public sanitizer: DomSanitizer) {
     this.contentLoading = true;
@@ -99,6 +99,5 @@ export class ViewComponent implements OnDestroy, OnInit {
     this.selectedRowIndex = row.serialNumber;
     this.selectedCertificatePath = row.certificatePath;
     this.selectedPageInPdf = (row.pageInPdf === undefined) ? 1 : row.pageInPdf;
-    this.sidenav.open();
   }
 }

@@ -1,8 +1,16 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+html,
+body,
+material-app,
+mat-sidenav-container,
+.view-content {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
 body {
     background: ghostwhite;
-    margin: 0px;
-    height: 100vh;
 }
 
 div.content-margin {
