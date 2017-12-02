@@ -55,7 +55,7 @@
             <mat-toolbar color="primary" class="mat-elevation-z2">
                 <span>Student Certificate</span>
             </mat-toolbar>
-            <pdf-viewer *ngIf="selectedRowIndex !== -1" [(page)]="selectedPageInPdf" [src]="selectedCertificatePath" [fit-to-page]="true" [show-all]="false">
+            <pdf-viewer *ngIf="selectedRowIndex !== -1" [(page)]="selectedPageInPdf" [src]="selectedCertificatePath" [original-size]="false" [fit-to-page]="false" [show-all]="false">
             </pdf-viewer>
             <p *ngIf="selectedRowIndex === -1">Select a student from the table,<br> to view Certificate</p>
         </div>

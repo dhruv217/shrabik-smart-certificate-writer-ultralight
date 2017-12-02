@@ -70,8 +70,8 @@ export class FirebaseDataSource<T> extends DataSource<T> {
     /**
      * Sets up a subscriber to the path and emits data change events.
      */
-    this._sub = this.db.list(this.path).valueChanges<T>()
-      .subscribe((data) => {
+    this._sub = this.db.list<T>(this.path).valueChanges()
+      .subscribe((data: T[]) => {
         this.dataChange.next(data);
       });
 

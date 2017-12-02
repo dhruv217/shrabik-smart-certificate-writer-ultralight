@@ -44,7 +44,7 @@
 .view-pdf {
     margin-top: 16px;
     margin-left: 8px;
-    width: 100%;
+    max-width:480px;
     -webkit-order: 1;
     -ms-flex-order: 1;
     order: 1;
@@ -55,7 +55,9 @@
     -ms-flex-item-align: auto;
     align-self: auto;
 }
-
+ .view-pdf>p {
+     text-align: center;
+ }
 .table-container {
     display: flex;
     flex-direction: column;
